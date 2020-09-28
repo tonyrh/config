@@ -1,0 +1,116 @@
+{
+    "layout": "splith",
+    "percent": 0.5,
+    "type": "con",
+    "nodes": [    
+    {
+        "border": "normal",
+        "floating": "auto_off",
+        "layout": "splitv",
+        "marks": [],
+        "percent": 0.5,
+        "type": "con",
+        "nodes": [
+            {
+                "border": "pixel",
+                "current_border_width": 1,
+                "floating": "auto_off",
+                "geometry": {
+                   "height": 484,
+                   "width": 804,
+                   "x": 0,
+                   "y": 0
+                },
+                "marks": [],
+                "name": "i3-save-tree --workspace 1 > ~/.config/i3/work1.json",
+                "percent": 0.5,
+                "swallows": [
+                   {
+                   "class": "^URxvt$",
+                   "instance": "^urxvt$",
+                   "title": "^htop$"
+                   }
+                ],
+                "type": "con"
+            },
+            {
+                "border": "pixel",
+                "current_border_width": 1,
+                "floating": "auto_off",
+                "geometry": {
+                   "height": 484,
+                   "width": 804,
+                   "x": 0,
+                   "y": 0
+                },
+                "marks": [],
+                "name": "tony@hell: ~",
+                "percent": 0.5,
+                "swallows": [
+                   {
+                   "class": "^Lollypop$",
+                   "instance": "^lollypop$",
+                   "title": "^Lollypop"
+                   }
+                ],
+                "type": "con"
+            }
+        ]
+    },
+    {
+        "border": "normal",
+        "floating": "auto_off",
+        "layout": "splitv",
+        "marks": [],
+        "percent": 0.5,
+        "type": "con",
+        "nodes": [
+            {
+                "border": "pixel",
+                "current_border_width": 1,
+                "floating": "auto_off",
+                "geometry": {
+                   "height": 404,
+                   "width": 804,
+                   "x": 0,
+                   "y": 0
+                },
+                "marks": [],
+                "name": "Home",
+                "percent": 0.64,
+                "swallows": [
+                   {
+                   "class": "^Org\\.gnome\\.Nautilus$",
+                   "instance": "^org\\.gnome\\.Nautilus$",
+                   "title": "^Home$"
+                   }
+                ],
+                "type": "con"
+            },
+            {
+                "border": "pixel",
+                "current_border_width": 1,
+                "floating": "auto_off",
+                "geometry": {
+                   "height": 484,
+                   "width": 804,
+                   "x": 0,
+                   "y": 0
+                },
+                "marks": [],
+                "name": "tony@hell: ~",
+                "percent": 0.36,
+                "swallows": [
+                   {
+                   "class": "^Shortwave$",
+                   "instance": "^shortwave$",
+                   "title": "^Shortwave"
+                   }
+                ],
+                "type": "con"
+            }
+        ]
+    }
+    ]
+}
+

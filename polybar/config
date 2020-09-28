@@ -1,0 +1,187 @@
+;==========================================================
+;
+;
+;   ██████╗  ██████╗ ██╗  ██╗   ██╗██████╗  █████╗ ██████╗
+;   ██╔══██╗██╔═══██╗██║  ╚██╗ ██╔╝██╔══██╗██╔══██╗██╔══██╗
+;   ██████╔╝██║   ██║██║   ╚████╔╝ ██████╔╝███████║██████╔╝
+;   ██╔═══╝ ██║   ██║██║    ╚██╔╝  ██╔══██╗██╔══██║██╔══██╗
+;   ██║     ╚██████╔╝███████╗██║   ██████╔╝██║  ██║██║  ██║
+;   ╚═╝      ╚═════╝ ╚══════╝╚═╝   ╚═════╝ ╚═╝  ╚═╝╚═╝  ╚═╝
+;
+;   https://github.com/polybar/polybar
+;
+;==========================================================
+
+[colors]
+background = #8cabe2
+background-alt = #444
+foreground = #fff
+foreground-alt = #fff
+primary = #000
+secondary = #e60053
+tertiary = #fbff05
+alert = #bd2c40
+
+[bar/bar1]
+monitor = ${env:MONITOR:DVI-D-0}
+width = 100%
+height = 25
+fixed-center = false
+background = ${colors.background}
+foreground = ${colors.foreground}
+line-size = 3
+line-color = #f00
+border-color = #00000000
+padding-left = 2
+padding-right = 2
+module-margin-left = 2
+module-margin-right = 2
+font-0 = Ubuntu Mono Nerd Font:style=Bold:pixelsize=11;1
+font-1 = unifont:fontformat=truetype:size=12:antialias=false;0
+font-2 = Font Awesome 5 Free Solid:style=Solid:pixelsize=8;0
+modules-left = tux i3
+modules-center = 
+modules-right = eth filesystem pulseaudio memory cpu temperature date powermenu
+tray-position = none
+tray-padding = 2
+tray-background = ${root.background}
+cursor-click = pointer
+cursor-scroll = ns-resize
+
+[module/tux]
+type = custom/script
+format = 
+format-foreground = ${colors.foreground}
+tail = true
+exec = "echo a"
+click-left = j4-dmenu-desktop --dmenu="dmenu -i -fn 'Ubuntu Mono Nerd Font:style=Bold' -nb '#8cabe2' -nf '#ffffff' -sb '#ffffff' -sf '#8cabe2' -h 25"
+
+[module/filesystem]
+type = internal/fs
+interval = 25
+mount-0 = /
+mount-1 = /home
+mount-2 = /mnt/ssd_two
+label-mounted = %mountpoint%: %percentage_used%%
+label-unmounted = %mountpoint% not mounted
+label-unmounted-foreground = ${colors.foreground-alt}
+
+[module/i3]
+type = internal/i3
+format = <label-state> <label-mode>
+index-sort = true
+wrapping-scroll = false
+label-mode-padding = 0
+label-mode-foreground = #000
+label-mode-background = ${colors.primary}
+; focused = Active workspace on focused monitor
+label-focused = %index%
+label-focused-background = ${colors.foreground}
+label-focused-foreground = ${colors.background}
+label-focused-overline= ${colors.foreground}
+label-focused-padding = 2
+; unfocused = Inactive workspace on any monitor
+label-unfocused = %index%
+label-unfocused-padding = 2
+; visible = Active workspace on unfocused monitor
+label-visible = %index%
+label-visible-underline = 
+label-visible-padding = ${self.label-focused-padding}
+; urgent = Workspace with urgency hint set
+label-urgent = %index%
+label-urgent-background = ${colors.background}
+label-urgent-padding = 2
+
+[module/cpu]
+type = internal/cpu
+interval = 2
+format-prefix = "ﲾ "
+format-prefix-foreground = ${colors.foreground-alt}
+label = %percentage:2%%
+
+[module/memory]
+type = internal/memory
+interval = 2
+format-prefix = " "
+format-prefix-foreground = ${colors.foreground-alt}
+label = %percentage_used%%
+
+[module/eth]
+type = internal/network
+interface = enp3s0
+interval = 3.0
+format-connected-prefix = "ﯱ "
+format-connected-prefix-foreground = ${colors.foreground}
+label-connected = %local_ip%  %downspeed:8%  %upspeed:8%
+format-disconnected = 
+
+[module/date]
+type = internal/date
+interval = 5
+date = " %a %d %B %Y"
+date-alt = " %d/%m/%Y"
+time = "%H:%M"
+time-alt = %H:%M
+format-prefix = 
+format-prefix-foreground = ${colors.foreground-alt}
+label = %date% %time%
+
+[module/pulseaudio]
+type = internal/pulseaudio
+format-volume = <ramp-volume> <label-volume>
+label-volume = %percentage%%
+label-volume-foreground = ${colors.foreground}
+label-muted = ﱝ
+label-muted-foreground = ${colors.foreground}
+ramp-volume-0 = 奄
+ramp-volume-1 = 奔
+ramp-volume-2 = 墳
+click-right = pavucontrol &
+
+[module/temperature]
+type = internal/temperature
+thermal-zone = 0
+warn-temperature = 80
+hwmon-path = ${env:HWMON_PATH}
+format = <ramp> <label>
+format-underline = ${colors.background}
+format-warn = <ramp> <label-warn>
+format-warn-underline = ${self.format-underline}
+label = %temperature-c%
+label-warn = %temperature-c%
+label-warn-foreground = ${colors.secondary}
+ramp-0 = 
+ramp-1 = 
+ramp-2 = 
+ramp-foreground = ${colors.foreground-alt}
+
+[module/powermenu]
+type = custom/menu
+expand-right = true
+format-spacing = 1
+label-open = 
+label-open-foreground = ${colors.foreground}
+label-close =  cancel
+label-close-foreground = ${colors.foreground}
+label-separator = |
+label-separator-foreground = ${colors.foreground-alt}
+menu-0-0 = reboot
+menu-0-0-exec = menu-open-1
+menu-0-0-foreground = ${colors.primary}
+menu-0-1 = power off
+menu-0-1-exec = menu-open-2
+menu-0-1-foreground = ${colors.primary} 
+menu-1-0 = reboot
+menu-1-0-exec = reboot
+menu-1-0-foreground = ${colors.primary}
+menu-2-0 = power off
+menu-2-0-exec = poweroff
+menu-2-0-foreground = ${colors.primary}
+
+[settings]
+screenchange-reload = true
+pseudo-transparency = true
+
+[global/wm]
+margin-top = 5
+margin-bottom = 0
